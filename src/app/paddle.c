@@ -27,3 +27,12 @@ void draw_paddle(SDL_Renderer *renderer, SDL_Rect *paddle, bool is_player) {
 
 	SDL_RenderFillRect(renderer, paddle);
 }
+
+void move_paddle(SDL_Rect *paddle, bool up) {
+	// Paddle goes up
+	if (up) {
+		(*paddle).y -= 10;
+	} else {
+		(*paddle).y += 10;
+	}
+}

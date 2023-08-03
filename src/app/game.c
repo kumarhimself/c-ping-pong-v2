@@ -5,10 +5,13 @@
 
 #include "game.h"
 #include "paddle.h"
+#include "player.h"
 
 int game(SDL_Renderer *renderer) {
 	bool is_game_running = true;
-	
+
+	const Uint8 *keyboard_state = SDL_GetKeyboardState(NULL);
+
 	SDL_Rect rectangle = {0, 45, 32, 32};
 
 	SDL_Rect player;
@@ -25,6 +28,8 @@ int game(SDL_Renderer *renderer) {
 
 		draw_paddle(renderer, &player, true);
 		draw_paddle(renderer, &opponent, false);
+
+		player_detect_movement(&player, keyboard_state);
 
 		if (SDL_PollEvent(&event) > 0) {
 			if (event.type == SDL_QUIT) is_game_running = false;
