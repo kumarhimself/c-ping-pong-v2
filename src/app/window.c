@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 #include "window.h"
+#include "window_vars.h"
 #include "game.h"
-
-// Screen dimension macros
-#define SCREEN_WIDTH 680
-#define SCREEN_HEIGHT 480
 
 int init(SDL_Window **window, SDL_Renderer **renderer) {
 	// Initialize SDL2
@@ -16,13 +14,18 @@ int init(SDL_Window **window, SDL_Renderer **renderer) {
 		return -1;
 	}
 
+	if (TTF_Init() < 0) {
+		printf("Failed to initialize TTF library\n");
+		return -1;
+	}
+
 	// Initializing window
 	Uint32 flags = SDL_WINDOW_SHOWN;
-	*window = SDL_CreateWindow("SDL2 Window",
+	*window = SDL_CreateWindow("2D Ping Pong",
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
-			SCREEN_WIDTH,
-			SCREEN_HEIGHT,
+			WINDOW_WIDTH,
+			WINDOW_HEIGHT,
 			flags);
 
 	if (!(*window)) {
