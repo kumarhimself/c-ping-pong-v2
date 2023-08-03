@@ -5,8 +5,8 @@
 #include "window_vars.h"
 
 void init_ball(SDL_Rect *ball) {
-	(*ball).w = 10;
-	(*ball).h = 10;
+	(*ball).w = 15;
+	(*ball).h = 15;
 	(*ball).x = WINDOW_WIDTH / 2 - (*ball).w / 2;
 	(*ball).y = WINDOW_HEIGHT / 2 - (*ball).h / 2;
 }
