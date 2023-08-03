@@ -6,6 +6,7 @@
 #include "game.h"
 #include "paddle.h"
 #include "player.h"
+#include "ball.h"
 
 int game(SDL_Renderer *renderer) {
 	bool is_game_running = true;
@@ -18,6 +19,8 @@ int game(SDL_Renderer *renderer) {
 	init_paddle(&player, true);
 	SDL_Rect opponent;
 	init_paddle(&opponent, false);
+	SDL_Rect ball;
+	init_ball(&ball);
 
 	while (is_game_running) {
 		SDL_Event event;
@@ -28,6 +31,7 @@ int game(SDL_Renderer *renderer) {
 
 		draw_paddle(renderer, &player, true);
 		draw_paddle(renderer, &opponent, false);
+		draw_ball(renderer, &ball);
 
 		player_detect_movement(&player, keyboard_state);
 
