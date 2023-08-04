@@ -35,8 +35,8 @@ void move_paddle(SDL_Rect *paddle, bool up) {
 
 	// Paddle goes up
 	if (!top_bound_collision && up) {
-		(*paddle).y -= 10;
+		(*paddle).y -= 5;
 	} else if (!bottom_bound_collision) {
-		(*paddle).y += 10;
+		(*paddle).y += 5;
 	}
 }

@@ -17,12 +17,15 @@ int game(SDL_Renderer *renderer) {
 
 	const Uint8 *keyboard_state = SDL_GetKeyboardState(NULL);
 
+	// Initializing entities
 	SDL_Rect player;
 	init_paddle(&player, true);
 	SDL_Rect opponent;
 	init_paddle(&opponent, false);
 	SDL_Rect ball;
 	init_ball(&ball);
+	int x_direction = 1;
+	int y_direction = -1;
 
 	while (is_game_running) {
 		SDL_Event event;
@@ -37,8 +40,10 @@ int game(SDL_Renderer *renderer) {
 		draw_paddle(renderer, &player, true);
 		draw_paddle(renderer, &opponent, false);
 		draw_ball(renderer, &ball);
-
+		
+		// Updating entity movement
 		player_detect_movement(&player, keyboard_state);
+		move_ball(&ball, &x_direction, &y_direction, &player, &opponent);
 
 		if (SDL_PollEvent(&event) > 0) {
 			if (event.type == SDL_QUIT) is_game_running = false;
