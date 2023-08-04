@@ -25,11 +25,10 @@ void move_ball(SDL_Rect *ball, int *x_direction, int *y_direction, SDL_Rect *pla
 
 	// Ceiling/Floor Collisions
 	if ((*ball).y == 0 || (*ball).y + (*ball).h == WINDOW_HEIGHT) {
-		(*y_direction) = (-1) * (*y_direction);
+		(*y_direction) = ((*y_direction) == 0) ? (-1) : (-1) * (*y_direction);
 		return;
 	}
 
-	// Side Wall Collisions (Not necessary, will remove later)
 	if ((*ball).x + (*ball).w == WINDOW_WIDTH || (*ball).x == 0) {
 		(*x_direction) = (-1) * (*x_direction);
 		return;
@@ -41,6 +40,7 @@ void move_ball(SDL_Rect *ball, int *x_direction, int *y_direction, SDL_Rect *pla
 
 	if (x_player_collision && y_player_collision) {
 		(*x_direction) = (-1) * (*x_direction);
+		(*y_direction) = ((*y_direction) == 0) ? (-1) : (*y_direction); 
 		return;
 	}
 
@@ -50,6 +50,7 @@ void move_ball(SDL_Rect *ball, int *x_direction, int *y_direction, SDL_Rect *pla
 
 	if (x_opponent_collision && y_opponent_collision) {
 		(*x_direction) = (-1) * (*x_direction);
+		(*y_direction) = ((*y_direction) == 0) ? (-1) : (*y_direction); 
 		return;
 	}
 }

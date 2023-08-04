@@ -29,7 +29,7 @@ int game(SDL_Renderer *renderer) {
 		SDL_Rect ball;
 		init_ball(&ball);
 		int x_direction = (time(NULL) % 2) ? 1 : -1;
-		int y_direction = (time(NULL) % 2) ? -1 : 1;
+		int y_direction = 0;
 
 		while (1) {
 			SDL_Event event;
@@ -58,6 +58,13 @@ int game(SDL_Renderer *renderer) {
 				if (event.type == SDL_QUIT) {
 					is_game_running = false;
 					break;
+				}
+
+				if (event.type == SDL_KEYDOWN) {
+					if (event.key.keysym.sym == SDLK_ESCAPE) {
+						is_game_running = false;
+						break;
+					}
 				}
 			}
 
