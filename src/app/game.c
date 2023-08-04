@@ -33,6 +33,7 @@ int game(SDL_Renderer *renderer) {
 
 		draw_mid_line(renderer);	
 
+		// Draw entities
 		draw_paddle(renderer, &player, true);
 		draw_paddle(renderer, &opponent, false);
 		draw_ball(renderer, &ball);

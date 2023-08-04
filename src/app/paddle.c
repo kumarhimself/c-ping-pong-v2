@@ -29,10 +29,14 @@ void draw_paddle(SDL_Renderer *renderer, SDL_Rect *paddle, bool is_player) {
 }
 
 void move_paddle(SDL_Rect *paddle, bool up) {
+	// Collision check
+	bool top_bound_collision = (*paddle).y == 0;
+	bool bottom_bound_collision = (*paddle).y + (*paddle).h == WINDOW_HEIGHT;
+
 	// Paddle goes up
-	if (up) {
+	if (!top_bound_collision && up) {
 		(*paddle).y -= 10;
-	} else {
+	} else if (!bottom_bound_collision) {
 		(*paddle).y += 10;
 	}
 }
