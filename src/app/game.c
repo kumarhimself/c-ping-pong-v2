@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -7,6 +8,7 @@
 #include "window_vars.h"
 #include "paddle.h"
 #include "player.h"
+#include "opponent.h"
 #include "ball.h"
 
 // Function Prototype(s)
@@ -24,8 +26,8 @@ int game(SDL_Renderer *renderer) {
 	init_paddle(&opponent, false);
 	SDL_Rect ball;
 	init_ball(&ball);
-	int x_direction = 1;
-	int y_direction = -1;
+	int x_direction = (time(NULL) % 2) ? 1 : -1;
+	int y_direction = (time(NULL) % 2) ? -1 : 1;
 
 	while (is_game_running) {
 		SDL_Event event;
@@ -43,6 +45,7 @@ int game(SDL_Renderer *renderer) {
 		
 		// Updating entity movement
 		player_detect_movement(&player, keyboard_state);
+		move_opponent(&opponent, &ball);
 		move_ball(&ball, &x_direction, &y_direction, &player, &opponent);
 
 		if (SDL_PollEvent(&event) > 0) {

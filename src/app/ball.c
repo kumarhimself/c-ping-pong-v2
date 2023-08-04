@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 #include <SDL.h>
 
 #include "window_vars.h"
@@ -40,7 +41,6 @@ void move_ball(SDL_Rect *ball, int *x_direction, int *y_direction, SDL_Rect *pla
 
 	if (x_player_collision && y_player_collision) {
 		(*x_direction) = (-1) * (*x_direction);
-		(*y_direction) = (-1) * (*y_direction);
 		return;
 	}
 
@@ -50,7 +50,6 @@ void move_ball(SDL_Rect *ball, int *x_direction, int *y_direction, SDL_Rect *pla
 
 	if (x_opponent_collision && y_opponent_collision) {
 		(*x_direction) = (-1) * (*x_direction);
-		(*y_direction) = (-1) * (*y_direction);
 		return;
 	}
 }
