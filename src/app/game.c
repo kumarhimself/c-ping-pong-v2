@@ -45,9 +45,9 @@ int game(SDL_Renderer *renderer) {
 		
 		// Updating entity movement
 		player_detect_movement(&player, keyboard_state);
-		move_opponent(&opponent, &ball);
 		move_ball(&ball, &x_direction, &y_direction, &player, &opponent);
-
+		move_opponent(&opponent, &ball);
+		
 		if (SDL_PollEvent(&event) > 0) {
 			if (event.type == SDL_QUIT) is_game_running = false;
 		}
